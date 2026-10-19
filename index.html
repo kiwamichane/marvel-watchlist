@@ -2,145 +2,86 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marvel 完全視聴チェックリスト</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marvel 完全視聴チェックリスト｜MCU公開順厳守版</title>
 <style>
-:root { color-scheme: dark; --bg:#0b0e14; --panel:#151a24; --line:#2b3445; --text:#f2f5fb; --muted:#a9b4c7; --accent:#d71f35; }
-* { box-sizing:border-box; }
-body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:linear-gradient(160deg,#101827,var(--bg) 50%); color:var(--text); }
-main { max-width:900px; margin:auto; padding:24px 16px 60px; }
-header { padding:24px 0 16px; }
-.kicker { color:#ff6575; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; font-weight:700; }
-h1 { font-size:clamp(1.8rem,5vw,3rem); margin:.3em 0; }
-p { color:var(--muted); line-height:1.6; }
-.stats { background:var(--panel); border:1px solid var(--line); padding:18px; border-radius:16px; position:sticky; top:8px; z-index:5; box-shadow:0 8px 24px #0005; }
-.statline { display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; }
-#count { font-weight:800; font-size:1.1rem; }
-progress { width:100%; height:10px; margin:12px 0 4px; accent-color:var(--accent); }
-.controls { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-button { cursor:pointer; border:1px solid var(--line); border-radius:10px; padding:9px 12px; color:var(--text); background:#222a39; font:inherit; }
-button:hover { background:#303b4f; }
-section { margin-top:24px; }
-h2 { font-size:1.15rem; margin:0 0 10px; }
-.section-count { color:var(--muted); font-size:.85rem; font-weight:500; }
-.list { border:1px solid var(--line); background:var(--panel); border-radius:14px; overflow:hidden; }
-label.item { display:flex; gap:12px; align-items:flex-start; padding:12px 14px; border-bottom:1px solid #252d3b; cursor:pointer; line-height:1.45; }
-label.item:last-child { border-bottom:0; }
-label.item:hover { background:#1c2330; }
-input[type=checkbox] { accent-color:var(--accent); width:18px; height:18px; flex:0 0 auto; margin-top:2px; }
-.item.done span { color:#8591a5; text-decoration:line-through; }
-.num { color:#ff7b89; font-variant-numeric:tabular-nums; min-width:2.4em; display:inline-block; }
-.hidden { display:none !important; }
-footer { margin-top:30px; color:var(--muted); font-size:.85rem; }
-@media(max-width:540px) { main {padding:16px 10px 40px} .stats {top:4px;padding:14px} label.item {padding:11px 10px} }
+:root{--bg:#090d15;--panel:#141a25;--panel2:#1a2230;--line:#2a3548;--text:#f3f6fb;--muted:#aab6c9;--red:#e5394f;--gold:#f4b942;--blue:#63a4ff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(155deg,#111a2b 0%,var(--bg) 48%);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:auto;padding:24px 16px 70px}header{padding:18px 0 10px}.kicker{font-size:.78rem;letter-spacing:.15em;color:#ff6e7e;font-weight:800}
+h1{font-size:clamp(1.8rem,5vw,3rem);margin:.28em 0}p{color:var(--muted);line-height:1.65}
+.rule{border-left:4px solid var(--red);background:#161d29;padding:12px 14px;border-radius:8px;margin:16px 0}
+.stats{position:sticky;top:8px;z-index:5;background:#121925ee;backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 10px 28px #0006}
+.row{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}progress{width:100%;height:10px;accent-color:var(--red);margin:11px 0 4px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}button{border:1px solid var(--line);background:#222c3d;color:var(--text);padding:9px 12px;border-radius:10px;cursor:pointer}
+button:hover{background:#303c51}h2{font-size:1.18rem;margin:26px 0 10px}.list{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:var(--panel)}
+.item{display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid #252f40;align-items:flex-start;cursor:pointer}.item:last-child{border-bottom:0}.item:hover{background:#1b2433}
+.item input{width:18px;height:18px;margin-top:3px;accent-color:var(--red);flex:none}.body{flex:1;min-width:0}.titleline{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.num{color:#ff7888;font-weight:800;min-width:2.4em}.date{color:#dce5f3;font-variant-numeric:tabular-nums;font-size:.78rem;border:1px solid #43516a;padding:1px 6px;border-radius:999px}
+.kind{font-size:.72rem;padding:2px 7px;border-radius:999px;border:1px solid #46536a;color:#d6e1f2}.kind.pre{border-color:#7b6331;color:#ffd67a;background:#2a2416}.note{display:block;color:var(--muted);font-size:.84rem;margin-top:5px;line-height:1.5}
+.done .name{text-decoration:line-through;color:#8490a2}.hidden{display:none!important}.warn{background:#191b20;border:1px solid #66552f;border-radius:15px;padding:14px;margin-top:26px}.warn h2{margin-top:0;color:#ffd67a}
+.unplaced{padding:10px 0;border-bottom:1px solid #2a2d33}.unplaced:last-child{border:0}footer{margin-top:28px;color:var(--muted);font-size:.84rem;line-height:1.6}
+@media(max-width:560px){main{padding:14px 10px 50px}.stats{top:4px}.item{padding:11px 10px}}
 </style>
 </head>
-<body>
-<main>
+<body><main>
 <header>
-<div class="kicker">Your Marvel Journey</div>
+<div class="kicker">MCU RELEASE ORDER — STRICT</div>
 <h1>Marvel 完全視聴チェックリスト</h1>
-<p>MCU・Disney+・Sony系・X-Men・Fantastic Four・Marvelドラマなどの視聴進捗を管理。チェックはこのブラウザに自動保存されます。</p>
+<p>MCU映画・MCU/Marvel Television系ドラマを<strong>公開／配信開始順で固定</strong>し、MCU外の予習作品だけを必要な作品の直前へ差し込んだ版です。</p>
+<div class="rule"><strong>今回のルール：</strong> MCU本編の順番は動かさない。配置を断定できない作品は、適当に本線へ入れず「確認待ち・本線外」に分離。</div>
 </header>
 <div class="stats">
-  <div class="statline"><strong id="count">0 / 121 項目</strong><span id="percent">0% 完了</span></div>
-  <progress id="progress" value="0" max="121"></progress>
-  <div class="controls">
-    <button id="toggleRemaining">未視聴だけ表示</button>
-    <button id="export">進捗をバックアップ</button>
-    <button id="importBtn">バックアップを読み込む</button>
-    <button id="reset">チェックをリセット</button>
-    <input id="importFile" type="file" accept="application/json" hidden>
-  </div>
-  <p id="notice" aria-live="polite" style="margin:10px 0 0;font-size:.85rem"></p>
+<div class="row"><strong id="count">0 / 0 項目</strong><span id="percent">0% 完了</span></div>
+<progress id="progress" value="0" max="1"></progress>
+<div class="controls">
+<button id="remaining">未視聴だけ表示</button><button id="export">進捗をバックアップ</button><button id="importBtn">バックアップを読み込む</button><button id="reset">チェックをリセット</button>
+<input id="importFile" type="file" accept="application/json" hidden>
+</div><p id="notice" aria-live="polite" style="margin:8px 0 0;font-size:.83rem"></p>
 </div>
-<div id="sections"></div>
-<footer>注意：チェック情報は同じブラウザ内に保存されます。別のPC・スマホとの同期には「進捗をバックアップ」でJSONファイルを保存し、別端末で読み込んでください。リストは元の一覧をそのまま収録しており、公開状況・視聴順は必要に応じて見直してください。</footer>
+<h2>本線：MCU公開順＋直前予習</h2>
+<div class="list" id="mainList"></div>
+<div class="warn">
+<h2>確認待ち・本線外</h2>
+<p>以下は「どこかに適当に置く」ことをしていません。MCU本流ではない、必須関係が弱い、または厳密な公開日を今回確定できなかった作品です。</p>
+<div id="unplaced"></div>
+</div>
+<footer>
+基準日は主に米国での劇場公開日／配信開始日。ドラマはシーズンの第1話公開日で並べています。旧Marvel Television作品は現在のMCU正史との扱いに歴史的な揺れがあるため、「MCU関連ドラマ」と表示していますが、公開順自体は崩していません。
+</footer>
 </main>
 <script>
-const sections = [{"title": "第1部：MCU初期・S.H.I.E.L.D.の時代", "items": ["アイアンマン", "インクレディブル・ハルク", "アイアンマン2", "マイティ・ソー", "キャプテン・アメリカ／ザ・ファースト・アベンジャー", "エージェント・カーター（短編映画）", "アベンジャーズ", "エージェント・オブ・シールド シーズン1", "マイティ・ソー／ダーク・ワールド", "アイアンマン3", "エージェント・オブ・シールド シーズン2", "キャプテン・アメリカ／ウィンター・ソルジャー", "ガーディアンズ・オブ・ギャラクシー", "ガーディアンズ・オブ・ギャラクシー：リミックス", "アベンジャーズ／エイジ・オブ・ウルトロン", "アントマン", "エージェント・カーター シーズン1", "エージェント・カーター シーズン2", "デアデビル シーズン1", "ジェシカ・ジョーンズ シーズン1"]}, {"title": "第2部：シビル・ウォーとスパイダーマンの旧作", "items": ["デアデビル シーズン2", "ルーク・ケイジ シーズン1", "アイアン・フィスト シーズン1", "キャプテン・アメリカ／シビル・ウォー", "エージェント・オブ・シールド シーズン3", "ドクター・ストレンジ", "ブラックパンサー", "スパイダーマン（2002）", "スパイダーマン2", "スパイダーマン3", "アメイジング・スパイダーマン", "アメイジング・スパイダーマン2", "スパイダーマン：ホームカミング", "パニッシャー シーズン1", "ディフェンダーズ", "ジェシカ・ジョーンズ シーズン2", "ルーク・ケイジ シーズン2", "アイアン・フィスト シーズン2", "デアデビル シーズン3"]}, {"title": "第3部：インフィニティ・サーガ後半", "items": ["マイティ・ソー バトルロイヤル", "アベンジャーズ／インフィニティ・ウォー", "アントマン＆ワスプ", "キャプテン・マーベル", "アベンジャーズ／エンドゲーム", "パニッシャー シーズン2", "ジェシカ・ジョーンズ シーズン3", "スパイダーマン：ファー・フロム・ホーム"]}, {"title": "第4部：Sonyの実写スパイダーマン関連作品", "items": ["ヴェノム", "ヴェノム：レット・ゼア・ビー・カーネイジ", "スパイダーマン：ノー・ウェイ・ホーム"]}, {"title": "第5部：マルチバース・サーガ", "items": ["ワンダヴィジョン", "ファルコン＆ウィンター・ソルジャー", "ロキ シーズン1", "ブラック・ウィドウ", "ホワット・イフ...? シーズン1", "シャン・チー／テン・リングスの伝説", "エターナルズ", "ホークアイ", "ムーンナイト", "ドクター・ストレンジ／マルチバース・オブ・マッドネス", "ミズ・マーベル", "ソー：ラブ＆サンダー", "アイ・アム・グルート シーズン1", "シー・ハルク：ザ・アトーニー", "ブラックパンサー／ワカンダ・フォーエバー", "ガーディアンズ・オブ・ギャラクシー ホリデー・スペシャル", "アントマン＆ワスプ：クアントマニア", "ガーディアンズ・オブ・ギャラクシー：VOLUME 3", "シークレット・インベージョン", "ロキ シーズン2", "マーベルズ", "エコー", "ホワット・イフ...? シーズン2", "アイ・アム・グルート シーズン2", "アガサ・オール・アロング", "ホワット・イフ...? シーズン3"]}, {"title": "第6部：X-Men・Fantastic Fourの旧作", "items": ["X-MEN", "X-MEN2", "X-MEN：ファイナル ディシジョン", "ウルヴァリン：X-MEN ZERO", "X-MEN：ファースト・ジェネレーション", "ウルヴァリン：SAMURAI", "X-MEN：フューチャー＆パスト", "デッドプール", "X-MEN：アポカリプス", "ローガン", "デッドプール2", "X-MEN：ダーク・フェニックス", "ファンタスティック・フォー［超能力ユニット］", "ファンタスティック・フォー：銀河の危機", "ファンタスティック・フォー（2015）"]}, {"title": "第7部：Sony系の残り・アニメ版スパイダーマン", "items": ["モービウス", "マダム・ウェブ", "ヴェノム：ザ・ラストダンス", "クレイヴン・ザ・ハンター", "スパイダーマン：スパイダーバース", "スパイダーマン：アクロス・ザ・スパイダーバース"]}, {"title": "第8部：旧Marvelドラマ・関連シリーズ", "items": ["エージェント・オブ・シールド シーズン4", "エージェント・オブ・シールド シーズン5", "エージェント・オブ・シールド シーズン6", "エージェント・オブ・シールド シーズン7", "インヒューマンズ シーズン1", "クローク＆ダガー シーズン1", "クローク＆ダガー シーズン2", "ランナウェイズ シーズン1", "ランナウェイズ シーズン2", "ランナウェイズ シーズン3"]}, {"title": "第9部：MCUの新しい時代", "items": ["キャプテン・アメリカ：ブレイブ・ニュー・ワールド", "デアデビル：ボーン・アゲイン シーズン1", "サンダーボルツ*", "ファンタスティック4：ファースト・ステップ", "アイアンハート", "デアデビル：ボーン・アゲイン シーズン2", "ワンダーマン", "ヴィジョンクエスト"]}, {"title": "第10部：追加で楽しむアニメ・関連作", "items": ["X-MEN（1992年アニメ版）", "X-MEN '97 シーズン1", "X-MEN '97 シーズン2（公開・配信状況を確認して追加）", "スパイダーマン：フレンドリー・ネイバーフッド（アニメ版）", "マーベル・ゾンビーズ", "アベンジャーズ：ドゥームズデイ（公開後に追加）"]}];
-const storageKey = 'marvel-watch-checklist-v1';
-let checked = new Set();
-let onlyRemaining = false;
-try { checked = new Set(JSON.parse(localStorage.getItem(storageKey) || '[]')); } catch(e) {}
-const total = sections.reduce((n,s)=>n+s.items.length,0);
-const root = document.getElementById('sections');
-document.getElementById('progress').max = total;
-let num = 0;
-sections.forEach((section,si) => {
-  const sec = document.createElement('section');
-  const h = document.createElement('h2');
-  h.innerHTML = '';
-  h.append(document.createTextNode(section.title + ' '));
-  const count = document.createElement('span'); count.className='section-count'; count.id='section-count-'+si;
-  h.append(count); sec.append(h);
-  const list = document.createElement('div'); list.className='list';
-  section.items.forEach((title,ii) => {
-    num++;
-    const id = 'item-'+num;
-    const label = document.createElement('label'); label.className='item'; label.dataset.title=title;
-    const cb = document.createElement('input'); cb.type='checkbox'; cb.checked=checked.has(title); cb.setAttribute('aria-label',title);
-    const text = document.createElement('span');
-    const n = document.createElement('b'); n.className='num'; n.textContent=String(num)+':';
-    text.append(n, document.createTextNode(' '+title));
-    label.append(cb,text); list.append(label);
-    cb.addEventListener('change',()=>{
-      if(cb.checked) checked.add(title); else checked.delete(title);
-      save(); label.classList.toggle('done',cb.checked); update();
-    });
-  });
-  sec.append(list); root.append(sec);
+const items=[{"date": "2008-05-02", "title": "アイアンマン", "kind": "MCU映画", "note": ""}, {"date": "2008-06-13", "title": "インクレディブル・ハルク", "kind": "MCU映画", "note": ""}, {"date": "2010-05-07", "title": "アイアンマン2", "kind": "MCU映画", "note": ""}, {"date": "2011-05-06", "title": "マイティ・ソー", "kind": "MCU映画", "note": ""}, {"date": "2011-07-22", "title": "キャプテン・アメリカ／ザ・ファースト・アベンジャー", "kind": "MCU映画", "note": ""}, {"date": "2012-05-04", "title": "アベンジャーズ", "kind": "MCU映画", "note": ""}, {"date": "2013-05-03", "title": "アイアンマン3", "kind": "MCU映画", "note": ""}, {"date": "2013-09-24", "title": "エージェント・オブ・シールド シーズン1", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "2013-11-08", "title": "マイティ・ソー／ダーク・ワールド", "kind": "MCU映画", "note": ""}, {"date": "2014-04-04", "title": "キャプテン・アメリカ／ウィンター・ソルジャー", "kind": "MCU映画", "note": ""}, {"date": "2014-08-01", "title": "ガーディアンズ・オブ・ギャラクシー", "kind": "MCU映画", "note": ""}, {"date": "2014-09-23", "title": "エージェント・オブ・シールド シーズン2", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "PRE", "title": "エージェント・カーター（マーベル・ワンショット）", "kind": "予習作品", "note": "『エージェント・カーター』S1の直前。短編でペギーのその後を補完。"}, {"date": "2015-01-06", "title": "エージェント・カーター シーズン1", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "2015-04-10", "title": "デアデビル シーズン1", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix。シーズン開始日基準"}, {"date": "2015-05-01", "title": "アベンジャーズ／エイジ・オブ・ウルトロン", "kind": "MCU映画", "note": ""}, {"date": "2015-07-17", "title": "アントマン", "kind": "MCU映画", "note": ""}, {"date": "2015-09-29", "title": "エージェント・オブ・シールド シーズン3", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "2015-11-20", "title": "ジェシカ・ジョーンズ シーズン1", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2016-01-19", "title": "エージェント・カーター シーズン2", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "2016-03-18", "title": "デアデビル シーズン2", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2016-05-06", "title": "シビル・ウォー／キャプテン・アメリカ", "kind": "MCU映画", "note": ""}, {"date": "2016-09-20", "title": "エージェント・オブ・シールド シーズン4", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "2016-09-30", "title": "ルーク・ケイジ シーズン1", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2016-11-04", "title": "ドクター・ストレンジ", "kind": "MCU映画", "note": ""}, {"date": "2017-03-17", "title": "アイアン・フィスト シーズン1", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2017-05-05", "title": "ガーディアンズ・オブ・ギャラクシー：リミックス", "kind": "MCU映画", "note": ""}, {"date": "2017-07-07", "title": "スパイダーマン：ホームカミング", "kind": "MCU映画", "note": ""}, {"date": "2017-08-18", "title": "ディフェンダーズ", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2017-09-29", "title": "インヒューマンズ シーズン1", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "2017-11-03", "title": "マイティ・ソー バトルロイヤル", "kind": "MCU映画", "note": ""}, {"date": "2017-11-17", "title": "パニッシャー シーズン1", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2017-11-21", "title": "ランナウェイズ シーズン1", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Hulu"}, {"date": "2017-12-01", "title": "エージェント・オブ・シールド シーズン5", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "2018-02-16", "title": "ブラックパンサー", "kind": "MCU映画", "note": ""}, {"date": "2018-03-08", "title": "ジェシカ・ジョーンズ シーズン2", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2018-04-27", "title": "アベンジャーズ／インフィニティ・ウォー", "kind": "MCU映画", "note": ""}, {"date": "2018-06-07", "title": "クローク＆ダガー シーズン1", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Freeform"}, {"date": "2018-06-22", "title": "ルーク・ケイジ シーズン2", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2018-07-06", "title": "アントマン＆ワスプ", "kind": "MCU映画", "note": ""}, {"date": "2018-09-07", "title": "アイアン・フィスト シーズン2", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2018-10-19", "title": "デアデビル シーズン3", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2018-12-21", "title": "ランナウェイズ シーズン2", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Hulu"}, {"date": "2019-01-18", "title": "パニッシャー シーズン2", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2019-03-08", "title": "キャプテン・マーベル", "kind": "MCU映画", "note": ""}, {"date": "2019-04-04", "title": "クローク＆ダガー シーズン2", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Freeform"}, {"date": "2019-04-26", "title": "アベンジャーズ／エンドゲーム", "kind": "MCU映画", "note": ""}, {"date": "2019-05-10", "title": "エージェント・オブ・シールド シーズン6", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "2019-06-14", "title": "ジェシカ・ジョーンズ シーズン3", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Netflix"}, {"date": "2019-07-02", "title": "スパイダーマン：ファー・フロム・ホーム", "kind": "MCU映画", "note": ""}, {"date": "2019-12-13", "title": "ランナウェイズ シーズン3", "kind": "MCU関連ドラマ", "note": "旧Marvel Television / Hulu"}, {"date": "2020-05-27", "title": "エージェント・オブ・シールド シーズン7", "kind": "MCU関連ドラマ", "note": "シーズン開始日基準"}, {"date": "2021-01-15", "title": "ワンダヴィジョン", "kind": "MCUドラマ", "note": ""}, {"date": "2021-03-19", "title": "ファルコン＆ウィンター・ソルジャー", "kind": "MCUドラマ", "note": ""}, {"date": "2021-06-09", "title": "ロキ シーズン1", "kind": "MCUドラマ", "note": ""}, {"date": "2021-07-09", "title": "ブラック・ウィドウ", "kind": "MCU映画", "note": ""}, {"date": "2021-08-11", "title": "ホワット・イフ...? シーズン1", "kind": "MCUアニメ", "note": "マルチバース作品"}, {"date": "2021-09-03", "title": "シャン・チー／テン・リングスの伝説", "kind": "MCU映画", "note": ""}, {"date": "2021-11-05", "title": "エターナルズ", "kind": "MCU映画", "note": ""}, {"date": "2021-11-24", "title": "ホークアイ", "kind": "MCUドラマ", "note": ""}, {"date": "PRE", "title": "スパイダーマン（2002）", "kind": "予習作品", "note": "『ノー・ウェイ・ホーム』直前の予習。サム・ライミ版1作目。"}, {"date": "PRE", "title": "スパイダーマン2", "kind": "予習作品", "note": "『ノー・ウェイ・ホーム』直前の予習。"}, {"date": "PRE", "title": "スパイダーマン3", "kind": "予習作品", "note": "『ノー・ウェイ・ホーム』直前の予習。"}, {"date": "PRE", "title": "アメイジング・スパイダーマン", "kind": "予習作品", "note": "『ノー・ウェイ・ホーム』直前の予習。"}, {"date": "PRE", "title": "アメイジング・スパイダーマン2", "kind": "予習作品", "note": "『ノー・ウェイ・ホーム』直前の予習。"}, {"date": "PRE", "title": "ヴェノム", "kind": "予習作品", "note": "必須度は低め。『レット・ゼア・ビー・カーネイジ』とMCU接点の理解用。"}, {"date": "PRE", "title": "ヴェノム：レット・ゼア・ビー・カーネイジ", "kind": "予習作品", "note": "ポストクレジットを含め『ノー・ウェイ・ホーム』周辺の接点を楽しむため。"}, {"date": "2021-12-17", "title": "スパイダーマン：ノー・ウェイ・ホーム", "kind": "MCU映画", "note": ""}, {"date": "2022-03-30", "title": "ムーンナイト", "kind": "MCUドラマ", "note": ""}, {"date": "2022-05-06", "title": "ドクター・ストレンジ／マルチバース・オブ・マッドネス", "kind": "MCU映画", "note": "『ワンダヴィジョン』視聴済み推奨。MCU公開順内ですでに前に配置。"}, {"date": "2022-06-08", "title": "ミズ・マーベル", "kind": "MCUドラマ", "note": ""}, {"date": "2022-07-08", "title": "ソー：ラブ＆サンダー", "kind": "MCU映画", "note": ""}, {"date": "2022-08-10", "title": "アイ・アム・グルート シーズン1", "kind": "MCUアニメ", "note": "短編"}, {"date": "2022-08-18", "title": "シー・ハルク：ザ・アトーニー", "kind": "MCUドラマ", "note": ""}, {"date": "2022-10-07", "title": "ウェアウルフ・バイ・ナイト", "kind": "MCUスペシャル", "note": "旧リストに無かったため追加"}, {"date": "2022-11-11", "title": "ブラックパンサー／ワカンダ・フォーエバー", "kind": "MCU映画", "note": ""}, {"date": "2022-11-25", "title": "ガーディアンズ・オブ・ギャラクシー ホリデー・スペシャル", "kind": "MCUスペシャル", "note": ""}, {"date": "2023-02-17", "title": "アントマン＆ワスプ：クアントマニア", "kind": "MCU映画", "note": ""}, {"date": "2023-05-05", "title": "ガーディアンズ・オブ・ギャラクシー：VOLUME 3", "kind": "MCU映画", "note": ""}, {"date": "2023-06-21", "title": "シークレット・インベージョン", "kind": "MCUドラマ", "note": ""}, {"date": "2023-09-06", "title": "アイ・アム・グルート シーズン2", "kind": "MCUアニメ", "note": "短編"}, {"date": "2023-10-05", "title": "ロキ シーズン2", "kind": "MCUドラマ", "note": ""}, {"date": "2023-11-10", "title": "マーベルズ", "kind": "MCU映画", "note": "『ワンダヴィジョン』『ミズ・マーベル』が予習。どちらも公開順上すでに前。"}, {"date": "2023-12-22", "title": "ホワット・イフ...? シーズン2", "kind": "MCUアニメ", "note": "マルチバース作品"}, {"date": "2024-01-09", "title": "エコー", "kind": "MCUドラマ", "note": "『ホークアイ』＋旧『デアデビル』系が予習。公開順上すでに前。"}, {"date": "PRE", "title": "X-MEN", "kind": "予習作品", "note": "『デッドプール＆ウルヴァリン』Fox/X-Men系予習。"}, {"date": "PRE", "title": "X-MEN2", "kind": "予習作品", "note": "同上。"}, {"date": "PRE", "title": "ファンタスティック・フォー［超能力ユニット］", "kind": "予習作品", "note": "同作のレガシー要素を楽しむため。"}, {"date": "PRE", "title": "X-MEN：ファイナル ディシジョン", "kind": "予習作品", "note": "Fox/X-Men系予習。"}, {"date": "PRE", "title": "ファンタスティック・フォー：銀河の危機", "kind": "予習作品", "note": "前作の続編。必須度は低め。"}, {"date": "PRE", "title": "ウルヴァリン：X-MEN ZERO", "kind": "予習作品", "note": "Fox/X-Men系予習。"}, {"date": "PRE", "title": "X-MEN：ファースト・ジェネレーション", "kind": "予習作品", "note": "Fox/X-Men系予習。"}, {"date": "PRE", "title": "ウルヴァリン：SAMURAI", "kind": "予習作品", "note": "ウルヴァリン関連予習。"}, {"date": "PRE", "title": "X-MEN：フューチャー＆パスト", "kind": "予習作品", "note": "Fox/X-Men系予習。"}, {"date": "PRE", "title": "デッドプール", "kind": "予習作品", "note": "『デッドプール＆ウルヴァリン』の直接予習。"}, {"date": "PRE", "title": "X-MEN：アポカリプス", "kind": "予習作品", "note": "Fox/X-Men系予習。"}, {"date": "PRE", "title": "ローガン", "kind": "予習作品", "note": "『デッドプール＆ウルヴァリン』を楽しむうえで重要。"}, {"date": "PRE", "title": "デッドプール2", "kind": "予習作品", "note": "『デッドプール＆ウルヴァリン』の直接予習。"}, {"date": "PRE", "title": "X-MEN：ダーク・フェニックス", "kind": "予習作品", "note": "Fox/X-Men系の補完。必須度は低め。"}, {"date": "2024-07-26", "title": "デッドプール＆ウルヴァリン", "kind": "MCU映画", "note": "旧リストに無かったため追加"}, {"date": "2024-09-18", "title": "アガサ・オール・アロング", "kind": "MCUドラマ", "note": "『ワンダヴィジョン』の続編系。"}, {"date": "2024-12-22", "title": "ホワット・イフ...? シーズン3", "kind": "MCUアニメ", "note": "マルチバース作品"}, {"date": "2025-02-14", "title": "キャプテン・アメリカ：ブレイブ・ニュー・ワールド", "kind": "MCU映画", "note": ""}, {"date": "2025-03-04", "title": "デアデビル：ボーン・アゲイン シーズン1", "kind": "MCUドラマ", "note": "旧『デアデビル』シリーズと『エコー』が理解に役立つ。公開順上すでに前。"}, {"date": "2025-05-02", "title": "サンダーボルツ*", "kind": "MCU映画", "note": ""}, {"date": "2025-06-24", "title": "アイアンハート", "kind": "MCUドラマ", "note": ""}, {"date": "2025-07-25", "title": "ファンタスティック4：ファースト・ステップ", "kind": "MCU映画", "note": "旧Fantastic Four映画との物語上の直接連続性は前提にしない。"}, {"date": "2025-08-06", "title": "アイズ・オブ・ワカンダ", "kind": "MCUアニメ", "note": "旧リストに無かったため追加"}, {"date": "2025-09-24", "title": "マーベル・ゾンビーズ", "kind": "MCUアニメ", "note": "『ホワット・イフ...?』由来のマルチバース作品"}, {"date": "2026-01-27", "title": "ワンダーマン", "kind": "MCUドラマ", "note": ""}, {"date": "2026-03-24", "title": "デアデビル：ボーン・アゲイン シーズン2", "kind": "MCUドラマ", "note": ""}, {"date": "2026-05-12", "title": "パニッシャー：ワン・ラスト・キル", "kind": "MCUスペシャル", "note": "旧リストに無かったため追加"}, {"date": "2026-07-31", "title": "スパイダーマン：ブランド・ニュー・デイ", "kind": "MCU映画", "note": "旧リストに無かったため追加"}, {"date": "2026-10-14", "title": "ヴィジョンクエスト", "kind": "MCUドラマ", "note": "公式案内上の配信開始日。『ワンダヴィジョン』『アガサ』などが予習。"}, {"date": "2026-12-18", "title": "アベンジャーズ／ドゥームズデイ", "kind": "MCU映画（公開予定）", "note": "2026-10-19時点で公開予定。"}];
+const unplaced=[{"title": "X-MEN（1992年アニメ版）", "note": "『X-MEN ’97』の直接の前作。MCU本流ではないため、MCU公開順の本線には混ぜず、X-MEN ’97を見る直前を推奨。"}, {"title": "X-MEN '97 シーズン1", "note": "1992年版アニメの続編。MCU本流とは別系統のため本線には混ぜていません。"}, {"title": "X-MEN '97 シーズン2", "note": "Marvel公式ページでは2026年表記を確認できる一方、今回確認できた公式情報では確定配信日を特定できなかったため配置保留。"}, {"title": "スパイダーマン：フレンドリー・ネイバーフッド シーズン1", "note": "MCU本流とは異なる別宇宙のアニメとして扱われるため、本線外。"}, {"title": "スパイダーマン：フレンドリー・ネイバーフッド シーズン2", "note": "2026年表記はあるものの、今回確認できた情報だけでは厳密な日付を確定できないため配置保留。"}, {"title": "スパイダーマン：スパイダーバース", "note": "MCU本編の必須予習ではないため本線外。"}, {"title": "スパイダーマン：アクロス・ザ・スパイダーバース", "note": "同上。"}, {"title": "モービウス", "note": "MCU本編の必須予習と断定できないため本線外。"}, {"title": "マダム・ウェブ", "note": "MCU本編の必須予習と断定できないため本線外。"}, {"title": "ヴェノム：ザ・ラストダンス", "note": "MCU本編の必須予習と断定できないため本線外。"}, {"title": "クレイヴン・ザ・ハンター", "note": "MCU本編の必須予習と断定できないため本線外。"}, {"title": "ファンタスティック・フォー（2015）", "note": "現行MCU作品との直接的な予習必須関係を確認できないため本線外。"}];
+const storageKey='marvel-watch-checklist-v1';
+let checked=new Set();try{checked=new Set(JSON.parse(localStorage.getItem(storageKey)||'[]'))}catch(e){}
+let onlyRemaining=false;
+const list=document.getElementById('mainList');
+items.forEach((x,i)=>{
+ const label=document.createElement('label');label.className='item';label.dataset.title=x.title;
+ const cb=document.createElement('input');cb.type='checkbox';cb.checked=checked.has(x.title);
+ const body=document.createElement('div');body.className='body';
+ const tl=document.createElement('div');tl.className='titleline';
+ const num=document.createElement('span');num.className='num';num.textContent=(i+1)+':';
+ const name=document.createElement('span');name.className='name';name.textContent=x.title;
+ const date=document.createElement('span');date.className='date';date.textContent=x.date==='PRE'?'直前予習':x.date;
+ const kind=document.createElement('span');kind.className='kind'+(x.kind==='予習作品'?' pre':'');kind.textContent=x.kind;
+ tl.append(num,name,date,kind);body.append(tl);
+ if(x.note){const note=document.createElement('span');note.className='note';note.textContent=x.note;body.append(note)}
+ label.append(cb,body);list.append(label);label.classList.toggle('done',cb.checked);
+ cb.addEventListener('change',()=>{cb.checked?checked.add(x.title):checked.delete(x.title);localStorage.setItem(storageKey,JSON.stringify([...checked]));update();});
 });
-function save() { localStorage.setItem(storageKey,JSON.stringify([...checked])); }
-function update() {
-  let n=0, offset=0;
-  sections.forEach((s,si)=>{
-    let local=0;
-    s.items.forEach(title=>{if(checked.has(title)){n++;local++;}});
-    const el=document.getElementById('section-count-'+si);
-    el.textContent=`(${local}/${s.items.length})`;
-  });
-  document.querySelectorAll('label.item').forEach(label=>{
-    const cb=label.querySelector('input');
-    label.classList.toggle('done',cb.checked);
-    label.classList.toggle('hidden',onlyRemaining && cb.checked);
-  });
-  document.getElementById('count').textContent=`${n} / ${total} 項目`;
-  document.getElementById('percent').textContent=`${Math.round(n/total*100)}% 完了`;
-  document.getElementById('progress').value=n;
-  document.querySelectorAll('section').forEach(sec=>{
-    const visible=[...sec.querySelectorAll('label.item')].some(l=>!l.classList.contains('hidden'));
-    sec.classList.toggle('hidden',onlyRemaining && !visible);
-  });
+const up=document.getElementById('unplaced');
+unplaced.forEach(x=>{const d=document.createElement('div');d.className='unplaced';const b=document.createElement('b');b.textContent=x.title;const n=document.createElement('div');n.className='note';n.textContent=x.note;d.append(b,n);up.append(d)});
+function update(){
+ const cbs=[...document.querySelectorAll('#mainList input[type=checkbox]')],done=cbs.filter(c=>c.checked).length,total=cbs.length;
+ document.getElementById('count').textContent=`${done} / ${total} 項目`;document.getElementById('percent').textContent=Math.round(done/total*100)+'% 完了';
+ const p=document.getElementById('progress');p.max=total;p.value=done;
+ document.querySelectorAll('#mainList .item').forEach(l=>{const c=l.querySelector('input');l.classList.toggle('done',c.checked);l.classList.toggle('hidden',onlyRemaining&&c.checked)});
 }
-document.getElementById('toggleRemaining').addEventListener('click',e=>{
-  onlyRemaining=!onlyRemaining;
-  e.target.textContent=onlyRemaining?'すべて表示':'未視聴だけ表示';
-  update();
-});
-document.getElementById('reset').addEventListener('click',()=>{
-  if(confirm('すべてのチェックをリセットしますか？')){
-    checked.clear(); document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false); save(); update();
-    document.getElementById('notice').textContent='チェックをリセットしました。';
-  }
-});
-document.getElementById('export').addEventListener('click',()=>{
-  const blob=new Blob([JSON.stringify({checked:[...checked],savedAt:new Date().toISOString()},null,2)],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='marvel-watch-progress.json'; a.click(); URL.revokeObjectURL(a.href);
-  document.getElementById('notice').textContent='進捗バックアップをダウンロードしました。';
-});
-document.getElementById('importBtn').addEventListener('click',()=>document.getElementById('importFile').click());
-document.getElementById('importFile').addEventListener('change',async e=>{
-  const f=e.target.files[0]; if(!f)return;
-  try{
-    const obj=JSON.parse(await f.text()); const arr=Array.isArray(obj)?obj:obj.checked;
-    if(!Array.isArray(arr)) throw new Error('invalid');
-    checked=new Set(arr); document.querySelectorAll('label.item').forEach(label=>{const cb=label.querySelector('input');cb.checked=checked.has(label.dataset.title);});
-    save();update();document.getElementById('notice').textContent='バックアップを読み込みました。';
-  }catch(err){document.getElementById('notice').textContent='ファイルを読み込めませんでした。';}
-  e.target.value='';
-});
+document.getElementById('remaining').onclick=e=>{onlyRemaining=!onlyRemaining;e.target.textContent=onlyRemaining?'すべて表示':'未視聴だけ表示';update()};
+document.getElementById('reset').onclick=()=>{if(confirm('すべてのチェックをリセットしますか？')){checked.clear();document.querySelectorAll('#mainList input').forEach(c=>c.checked=false);localStorage.setItem(storageKey,'[]');update()}};
+document.getElementById('export').onclick=()=>{const blob=new Blob([JSON.stringify({checked:[...checked],savedAt:new Date().toISOString()},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='marvel-watch-progress.json';a.click();URL.revokeObjectURL(a.href)};
+document.getElementById('importBtn').onclick=()=>document.getElementById('importFile').click();
+document.getElementById('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const o=JSON.parse(await f.text()),a=Array.isArray(o)?o:o.checked;if(!Array.isArray(a))throw 0;checked=new Set(a);document.querySelectorAll('#mainList .item').forEach(l=>l.querySelector('input').checked=checked.has(l.dataset.title));localStorage.setItem(storageKey,JSON.stringify([...checked]));update();document.getElementById('notice').textContent='バックアップを読み込みました。'}catch(_){document.getElementById('notice').textContent='読み込みに失敗しました。'}e.target.value=''};
 update();
-</script>
-</body>
-</html>
+</script></body></html>
